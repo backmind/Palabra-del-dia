@@ -3,7 +3,6 @@ name: Deploy feed to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: [feed.xml]
   workflow_dispatch:
 
 permissions:

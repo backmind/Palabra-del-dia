@@ -1,5 +1,10 @@
 # Palabra del Día
 
+[![Scrape](https://github.com/backmind/Palabra-del-dia/actions/workflows/scrape.yml/badge.svg)](https://github.com/backmind/Palabra-del-dia/actions/workflows/scrape.yml)
+[![Pages](https://github.com/backmind/Palabra-del-dia/actions/workflows/pages.yml/badge.svg)](https://github.com/backmind/Palabra-del-dia/actions/workflows/pages.yml)
+[![Feed](https://img.shields.io/badge/Atom_Feed-subscribe-orange?logo=rss)](https://backmind.github.io/Palabra-del-dia/feed.xml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 An Atom feed wrapper for [**La Palabra del Día**](https://www.elcastellano.org), the daily Spanish etymology newsletter by Ricardo Soca.
 
 ## Why this project
@@ -12,11 +17,13 @@ For many years the newsletter arrived as a self-contained email: open it, read i
 
 ## Feed URL
 
-```
-https://backmind.github.io/Palabra-del-dia/feed.xml
-```
+> **Subscribe in your feed reader:**
+>
+> ```
+> https://backmind.github.io/Palabra-del-dia/feed.xml
+> ```
 
-Add this URL to your favourite feed reader (Feedly, Miniflux, Inoreader, etc.).
+Copy the URL above and add it to your favourite feed reader (Feedly, Miniflux, Inoreader, etc.).
 
 ## What's included
 

@@ -91,11 +91,18 @@ def parse_entry(soup: BeautifulSoup, date: datetime.date) -> dict:
         entry["medievalismo_title"] = _text(
             med.select_one(".field-name-field-medievalismo h2")
         )
+        med_img = med.select_one("figure img")
+        entry["medievalismo_image_url"] = (
+            med_img["src"] if med_img and med_img.get("src") else None
+        )
+        entry["medievalismo_image_caption"] = _text(med.select_one("figcaption"))
         entry["medievalismo_body"] = _inner_html(
             med.select_one(".field-name-field-cuerpo-del-medievalismo .field-item")
         )
     else:
         entry["medievalismo_title"] = None
+        entry["medievalismo_image_url"] = None
+        entry["medievalismo_image_caption"] = None
         entry["medievalismo_body"] = None
 
     # --- Píldoras de lenguaje ---
@@ -149,6 +156,12 @@ def build_entry_html(entry: dict) -> str:
     if entry.get("medievalismo_title"):
         parts.append("<hr/>")
         parts.append(f'<h3>Medievalismo: {entry["medievalismo_title"]}</h3>')
+        if entry.get("medievalismo_image_url"):
+            caption = entry.get("medievalismo_image_caption") or ""
+            parts.append(
+                f'<figure><img src="{entry["medievalismo_image_url"]}" alt="{entry["medievalismo_title"]}"/>'
+                f"<figcaption>{caption}</figcaption></figure>"
+            )
         if entry.get("medievalismo_body"):
             parts.append(entry["medievalismo_body"])
 
