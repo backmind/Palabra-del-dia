@@ -1,11 +1,19 @@
 # Palabra del Día
 
-An automated scraper that extracts the daily etymology newsletter from [elcastellano.org](https://www.elcastellano.org) (by Ricardo Soca) and serves it as a clean, ad-free **Atom feed**.
+An Atom feed wrapper for [**La Palabra del Día**](https://www.elcastellano.org), the daily Spanish etymology newsletter by Ricardo Soca.
+
+## Why this project
+
+Ricardo Soca has been publishing *La Palabra del Día* for over two decades — a remarkable effort to document and share the origins of Spanish words. His newsletter is one of the longest-running etymology resources in the Spanish-speaking world, and this project exists thanks to his work.
+
+For many years the newsletter arrived as a self-contained email: open it, read it, done. Around 2020 the format changed to a short teaser linking to the website, which today is heavily loaded with advertising. For readers who prefer a distraction-free experience through an RSS/Atom feed reader, this project provides exactly that.
+
+**This is a wrapper, not a replacement.** All content belongs to Ricardo Soca and elcastellano.org. Every entry links back to the original page and attributes the author. If you enjoy the content, [subscribe to the original newsletter](https://www.elcastellano.org/suscripciones) — it's free, and it's the best way to support Ricardo Soca's work directly.
 
 ## Feed URL
 
 ```
-https://raw.githubusercontent.com/backmind/Palabra-del-dia/main/feed.xml
+https://backmind.github.io/Palabra-del-dia/feed.xml
 ```
 
 Add this URL to your favourite feed reader (Feedly, Miniflux, Inoreader, etc.).
@@ -36,4 +44,4 @@ uv run python src/scraper.py
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) — applies to the scraper code only. The newsletter content is property of Ricardo Soca / elcastellano.org.
