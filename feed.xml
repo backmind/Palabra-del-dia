@@ -4,7 +4,7 @@
   <subtitle>Etimología diaria de Ricardo Soca, sin publicidad</subtitle>
   <id>https://github.com/backmind/Palabra-del-dia</id>
   <link href="https://www.elcastellano.org" rel="alternate" />
-  <link href="https://raw.githubusercontent.com/backmind/Palabra-del-dia/main/feed.xml" rel="self" />
+  <link href="https://backmind.github.io/Palabra-del-dia/feed.xml" rel="self" />
   <author>
     <name>elcastellano.org</name>
   </author>

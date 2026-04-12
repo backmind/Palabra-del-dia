@@ -20,7 +20,7 @@ ATOM_NS = "http://www.w3.org/2005/Atom"
 FEED_ID = "https://github.com/backmind/Palabra-del-dia"
 FEED_TITLE = "La Palabra del Día — elcastellano.org"
 FEED_SUBTITLE = "Etimología diaria de Ricardo Soca, sin publicidad"
-FEED_SELF = "https://raw.githubusercontent.com/backmind/Palabra-del-dia/main/feed.xml"
+FEED_SELF = "https://backmind.github.io/Palabra-del-dia/feed.xml"
 FEED_ALT = "https://www.elcastellano.org"
 
 ET.register_namespace("", ATOM_NS)
