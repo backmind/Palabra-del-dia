@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 FEED_PATH = Path(__file__).resolve().parent.parent / "feed.xml"
 BASE_URL = "https://www.elcastellano.org/envios"
 MAX_ENTRIES = 90
+BACKFILL_DAYS = 5
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
 FEED_ID = "https://github.com/backmind/Palabra-del-dia"
@@ -276,6 +277,16 @@ def save_feed(tree: ET.ElementTree) -> None:
 # ---------------------------------------------------------------------------
 
 
+def _dates_to_check(today: datetime.date) -> list[datetime.date]:
+    """Return up to BACKFILL_DAYS past weekdays (+ today) that are missing."""
+    dates = []
+    for offset in range(BACKFILL_DAYS, -1, -1):  # oldest first
+        d = today - datetime.timedelta(days=offset)
+        if d.weekday() < 5:  # skip weekends
+            dates.append(d)
+    return dates
+
+
 def main() -> None:
     today = datetime.date.today()
 
@@ -284,25 +295,31 @@ def main() -> None:
         sys.exit(0)
 
     tree = load_feed()
+    updated = False
 
-    if tree and entry_exists(tree, today):
-        print(f"Entry for {today} already exists. Skipping.")
+    for date in _dates_to_check(today):
+        if tree and entry_exists(tree, date):
+            continue
+
+        print(f"Fetching {build_url(date)} ...")
+        soup = fetch_page(date)
+        if soup is None:
+            print(f"  {date} not found (404). Skipping.")
+            continue
+
+        entry = parse_entry(soup, date)
+        entry["html"] = build_entry_html(entry)
+        tree = add_entry(tree, entry)
+        updated = True
+        print(f"  Added: {entry['title']} ({date})")
+
+    if not updated:
+        print("No new entries to add.")
         sys.exit(0)
 
-    print(f"Fetching {build_url(today)} ...")
-    soup = fetch_page(today)
-    if soup is None:
-        print(f"Page for {today} not found (404). Will retry later.")
-        sys.exit(0)
-
-    entry = parse_entry(soup, today)
-    entry["html"] = build_entry_html(entry)
-
-    tree = add_entry(tree, entry)
     trim_entries(tree)
     save_feed(tree)
-
-    print(f"Feed updated: {entry['title']} ({today})")
+    print("Feed saved.")
 
 
 if __name__ == "__main__":
