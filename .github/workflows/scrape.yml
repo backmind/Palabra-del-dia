@@ -2,7 +2,7 @@ name: Scrape Palabra del Día
 
 on:
   schedule:
-    - cron: "30 4,6,8,10 * * *"
+    - cron: "30 4-16/2 * * 1-5"
   workflow_dispatch:
 
 permissions:
